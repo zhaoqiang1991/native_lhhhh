@@ -33,13 +33,25 @@ void People::setName(const string &name) {
 
 void People::getPeopleInfo() {
     std::cout << "======= getPeopleInfo" << std::endl;
-    list<int> pList;
-    pList.push_front(1);
-    pList.push_front(2);
-    pList.push_front(2);
+    /*  list<int> pList;
+      pList.push_front(1);
+      pList.push_front(2);
+      pList.push_front(3);
+  
+      for (list<int>::iterator i = pList.begin(); i != pList.end(); i++) {
+          std::cout << "result = " << *i << std::endl;
+      }*/
 
-    for (list<int>::iterator i = pList.begin(); i != pList.end(); i++) {
-        std::cout << "result = " << *i << std::endl;
+    list<People> data;
+    People *p1People = new People(1, "张三");
+    People *p2People = new People(2, "李四");
+    People *p3People = new People(3, "王五");
+
+    data.push_front(*p1People);
+    data.push_front(*p2People);
+    data.push_front(*p3People);
+
+    for (list<People>::iterator i = data.begin(); i != data.end(); i++) {
+        std::cout << "result = " << "name = " << (*i).getName() + "age = " << i->getAge() << std::endl;
     }
-
 }
