@@ -7,8 +7,9 @@
 
 #include <string>
 #include <iostream>
-
+#include <list>
 using namespace std;
+
 class People {
 public:
     People(int age, const string &name);

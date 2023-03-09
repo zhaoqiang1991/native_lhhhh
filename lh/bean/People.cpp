@@ -4,6 +4,7 @@
 
 #include "People.h"
 
+
 People::~People() {
     std::cout << "======= 无参构造函数" << std::endl;
 }
@@ -32,4 +33,13 @@ void People::setName(const string &name) {
 
 void People::getPeopleInfo() {
     std::cout << "======= getPeopleInfo" << std::endl;
+    list<int> pList;
+    pList.push_front(1);
+    pList.push_front(2);
+    pList.push_front(2);
+
+    for (list<int>::iterator i = pList.begin(); i != pList.end(); i++) {
+        std::cout << "result = " << *i << std::endl;
+    }
+
 }
