@@ -6,8 +6,23 @@
 #define LH_STUDENT_H
 
 
-class Student {
+#include "People.h"
+#include <iostream>
 
+using namespace std;
+
+class Student : public People {
+public:
+    Student(int age, const string &name, int num, float score);
+
+    virtual ~Student();
+
+    void getStudentInfo();
+
+private:
+
+    int num;
+    float score;
 };
 
 

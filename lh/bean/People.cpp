@@ -3,7 +3,6 @@
 //
 
 #include "People.h"
-#include "People.h"
 
 People::~People() {
     std::cout << "======= 无参构造函数" << std::endl;
