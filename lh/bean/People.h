@@ -8,6 +8,7 @@
 #include <string>
 #include <iostream>
 #include <list>
+#include <map>
 using namespace std;
 
 class People {
@@ -25,6 +26,10 @@ public:
     void setName(const string &name);
 
     void getPeopleInfo();
+
+    void getPeopleMapInfo();
+
+    string toString();
 
 private:
     int age;

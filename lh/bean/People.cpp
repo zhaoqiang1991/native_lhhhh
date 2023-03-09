@@ -37,7 +37,7 @@ void People::getPeopleInfo() {
       pList.push_front(1);
       pList.push_front(2);
       pList.push_front(3);
-  
+
       for (list<int>::iterator i = pList.begin(); i != pList.end(); i++) {
           std::cout << "result = " << *i << std::endl;
       }*/
@@ -54,4 +54,29 @@ void People::getPeopleInfo() {
     for (list<People>::iterator i = data.begin(); i != data.end(); i++) {
         std::cout << "result = " << "name = " << (*i).getName() + "age = " << i->getAge() << std::endl;
     }
+}
+
+void People::getPeopleMapInfo() {
+    map<int, People> mp;
+    People *p1People = new People(1, "张三");
+    People *p2People = new People(1, "张三");
+    People *p3People = new People(1, "李四");
+    People *p4People = new People(1, "王五");
+    mp.insert(pair<int, People>(01, *p1People));
+    mp.insert(pair<int, People>(02, *p2People));
+    mp.insert(pair<int, People>(03, *p3People));
+    mp.insert(pair<int, People>(04, *p4People));
+
+
+    for (map<int, People>::iterator it = mp.begin(); it != mp.end(); it++) {
+        std::cout << "====== result = ""it->first = " << it->first << " = 名字 = " << ((*it).second).toString()
+                  << std::endl;
+
+
+    }
+}
+
+string People::toString() {
+    std::cout << "age = " << age << " name = " << name << std::endl;
+    return std::string();
 }
