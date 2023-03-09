@@ -9,6 +9,7 @@
 #include <iostream>
 #include <list>
 #include <map>
+#include <set>
 using namespace std;
 
 class People {
@@ -31,10 +32,15 @@ public:
 
     string toString();
 
+    void getPeopleSetInfo();
+
+    bool operator==(const People &rhs) const;
+
+    bool operator!=(const People &rhs) const;
+
 private:
     int age;
     string name;
-
 };
 
 

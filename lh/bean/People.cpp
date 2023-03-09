@@ -68,15 +68,32 @@ void People::getPeopleMapInfo() {
     mp.insert(pair<int, People>(04, *p4People));
 
 
-    for (map<int, People>::iterator it = mp.begin(); it != mp.end(); it++) {
-        std::cout << "====== result = ""it->first = " << it->first << " = 名字 = " << ((*it).second).toString()
+    for (auto it = mp.begin(); it != mp.end(); it++) {
+        std::cout << "====== getPeopleMapInfo result = ""it->first = " << it->first << " = 名字 = " << ((*it).second).toString()
                   << std::endl;
-
-
     }
 }
 
-string People::toString() {
+string People::toString()   {
     std::cout << "age = " << age << " name = " << name << std::endl;
     return std::string();
 }
+
+void People::getPeopleSetInfo() {
+    set<People> st;
+    People *p1People = new People(1, "张三1");
+   /* People *p2People = new People(10, "张三2");
+    People *p3People = new People(19, "李四");
+    People *p4People = new People(17, "王五");*/
+
+   // st.insert(*p1People);
+
+    /*st.insert(*p2People);
+    st.insert(*p3People);
+    st.insert(*p4People);*/
+
+    for (auto it = st.begin(); it != st.end(); it++) {
+       //std::cout << "====== getPeopleSetInfo result = ""it->first = " << (*it).getName() << std::endl;
+    }
+}
+

@@ -10,6 +10,9 @@ int main() {
     std::cout << "============================ \n" << std::endl;
 
     people->getPeopleMapInfo();
+    std::cout << "============================ \n" << std::endl;
+
+    people->getPeopleSetInfo();
 
     Student student = Student(22, "tom", 121, 22.1);
     student.getStudentInfo();
