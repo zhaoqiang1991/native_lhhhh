@@ -34,9 +34,14 @@ public:
 
     void getPeopleSetInfo();
 
-    bool operator==(const People &rhs) const;
+    //放在set容器里面必须重写 比较操作
+    bool operator<(const People& y) const//重载运算符，很重要
+    {
+        return (this->age < y.age
+                || this->name == y.name);
+    }
 
-    bool operator!=(const People &rhs) const;
+
 
 private:
     int age;
