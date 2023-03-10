@@ -15,12 +15,19 @@ void test_template();
 
 void test_templateMethod();
 
+void test_virtualStanicBindMethod();
+
+void test_virtualDynamicBindMethod();
+
+
 int main() {
     //test_method1();
 
     //test_unique_ptr();
     //test_template();
-    test_templateMethod();
+    //test_templateMethod();
+    //test_virtualStanicBindMethod();
+    test_virtualDynamicBindMethod();
 
     return 0;
 }
@@ -68,6 +75,37 @@ void test_templateMethod() {
     int a = 1;
     int b = 2;
     cout << "==== swip = " << methon.swip(a, b) << endl;
+}
+
+//这种属于静态绑定，就是在编译的时候已经决定了类型
+void test_virtualStanicBindMethod() {
+
+    People addr, *pPeople;//= new People(1, "pppp");
+    Student student;
+    pPeople = &addr;
+
+    pPeople->eat();
+    pPeople = &student;
+    pPeople->eat();
+
+    People *p = new Student;
+    p->eat();
+
+}
+
+//动态绑定,在运行期间决定类型
+void test_virtualDynamicBindMethod() {
+
+    People addr, *pPeople;//= new People(1, "pppp");
+    Student student;
+    pPeople = &addr;
+
+    pPeople->eat();
+    pPeople = &student;
+    pPeople->eat();
+
+    People *p = new Student;
+    p->eat();
 }
 
 

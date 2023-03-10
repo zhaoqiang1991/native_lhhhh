@@ -13,11 +13,15 @@ using namespace std;
 
 class Student : public People {
 public:
+    Student();
+
     Student(int age, const string &name, int num, float score);
 
     virtual ~Student();
 
     void getStudentInfo();
+
+    virtual void eat();
 
 private:
 

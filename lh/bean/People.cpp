@@ -98,6 +98,12 @@ void People::getPeopleSetInfo() {
     }
 }
 
+void People::eat() {
+    cout<<"======eat people "<<endl;
+}
+
+People::People() {}
+
 
 
 

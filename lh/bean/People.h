@@ -10,10 +10,13 @@
 #include <list>
 #include <map>
 #include <set>
+
 using namespace std;
 
 class People {
 public:
+    People();
+
     People(int age, const string &name);
 
     virtual ~People();
@@ -35,12 +38,14 @@ public:
     void getPeopleSetInfo();
 
     //放在set容器里面必须重写 比较操作
-    bool operator<(const People& y) const//重载运算符，很重要
+    bool operator<(const People &y) const//重载运算符，很重要
     {
         return (this->age < y.age
                 || this->name == y.name);
     }
 
+
+    virtual void eat();
 
 
 private:

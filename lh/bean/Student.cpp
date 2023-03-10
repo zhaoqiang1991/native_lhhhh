@@ -14,5 +14,10 @@ Student::Student(int age, const string &name, int num, float score) : People(age
 
 void Student::getStudentInfo() {
     std::cout << "====getStudentInfo" << std::endl;
-
 }
+
+void Student::eat() {
+    std::cout << "====eat Student" << std::endl;
+}
+
+Student::Student() {}
