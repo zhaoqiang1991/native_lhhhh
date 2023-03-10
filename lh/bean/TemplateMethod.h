@@ -2,14 +2,14 @@
 // Created by lh on 2023-03-10.
 //
 
-#ifndef LH_METHON_H
-#define LH_METHON_H
+#ifndef LH_TEMPLATEMETHOD_H
+#define LH_TEMPLATEMETHOD_H
 
 #include <iostream>
 
 using namespace std;
 
-class Methon {
+class TemplateMethod {
 public:
     template<typename T>
 
@@ -18,4 +18,4 @@ public:
 
 
 
-#endif //LH_METHON_H
+#endif //LH_TEMPLATEMETHOD_H

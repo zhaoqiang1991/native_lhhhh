@@ -4,7 +4,7 @@
 
 #include <list>
 #include "bean/TemplateAnimal.cpp"
-#include "bean/Methon.cpp"
+#include "bean/TemplateMethod.cpp"
 //c/c++都有一个习惯就是先声明函数，然后在实现函数，有这个规则，标准
 
 void test_method1();
@@ -64,7 +64,7 @@ void test_template() {
 }
 
 void test_templateMethod() {
-    Methon methon;
+    TemplateMethod methon;
     int a = 1;
     int b = 2;
     cout << "==== swip = " << methon.swip(a, b) << endl;
