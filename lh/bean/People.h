@@ -46,6 +46,9 @@ public:
 private:
     int age;
     string name;
+
+public:
+    shared_ptr<People> ptr;
 };
 
 
