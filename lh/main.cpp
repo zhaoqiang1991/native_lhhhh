@@ -3,16 +3,24 @@
 #include "bean/Student.h"
 
 #include <list>
+#include "bean/TemplateAnimal.cpp"
+#include "bean/Methon.cpp"
 //c/c++都有一个习惯就是先声明函数，然后在实现函数，有这个规则，标准
 
 void test_method1();
 
 void test_unique_ptr();
 
+void test_template();
+
+void test_templateMethod();
+
 int main() {
     //test_method1();
 
-    test_unique_ptr();
+    //test_unique_ptr();
+    //test_template();
+    test_templateMethod();
 
     return 0;
 }
@@ -40,6 +48,26 @@ void test_unique_ptr() {
     cout << "======sp->toString() = " << sp->toString() << endl;
 
 
+}
+
+void test_template() {
+    auto *pAnimal = new TemplateAnimal(People(1212, "bill"));
+    auto *people = new People(1912, "chanle");
+    pAnimal->setAddress(*people);
+
+    auto pTemplateAnimal = new TemplateAnimal(string("北京市海淀区中关村"));
+
+    cout << "======pAnimal->getAddress() = " << (pAnimal->getAddress().toString()) << endl;
+    cout << "======pAnimal->getAddress() = " << (pTemplateAnimal->getAddress()) << endl;
+
+
+}
+
+void test_templateMethod() {
+    Methon methon;
+    int a = 1;
+    int b = 2;
+    cout << "==== swip = " << methon.swip(a, b) << endl;
 }
 
 
