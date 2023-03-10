@@ -19,6 +19,8 @@ void test_virtualStanicBindMethod();
 
 void test_virtualDynamicBindMethod();
 
+void test_lambdaMethod();
+
 
 int main() {
     //test_method1();
@@ -27,8 +29,8 @@ int main() {
     //test_template();
     //test_templateMethod();
     //test_virtualStanicBindMethod();
-    test_virtualDynamicBindMethod();
-
+    //test_virtualDynamicBindMethod();
+    test_lambdaMethod();
     return 0;
 }
 
@@ -106,6 +108,19 @@ void test_virtualDynamicBindMethod() {
 
     People *p = new Student;
     p->eat();
+}
+
+void test_lambdaMethod() {
+    auto f1 = [](int it, int num) -> int { return (it + num); };
+    cout << "======" << f1(2, 3) << endl;
+
+    auto f = [](int a) -> int { return a + 1; };
+    std::cout << "=======" << f(1) << std::endl;
+
+    auto f2 = [](const int *it, const int *num) -> int { return (*it + *num); };
+
+    int i = 3, k = 4;
+    cout << "=======" << f2(&i, &k) << endl;
 }
 
 
