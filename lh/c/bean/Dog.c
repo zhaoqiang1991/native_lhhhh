@@ -16,3 +16,11 @@ int sum(int *it) {
     }
     return sum;
 }
+
+void eat(int *it) {
+    *it = *it + 1000;
+    printf("%d\n%s\n", *it, "===== 调用eat 方法");
+}
+
+
+

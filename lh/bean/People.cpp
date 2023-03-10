@@ -11,7 +11,7 @@ People::~People() {
 
 
 People::People(int age, const string &name) : age(age), name(name) {
-    std::cout << "======= 有参构造函数" << "age = " << age << "name = " << name << std::endl;
+    std::cout << "======= 有参构造函数" << "age = " << age << "age = " << name << std::endl;
 
 }
 
@@ -52,7 +52,7 @@ void People::getPeopleInfo() {
     data.push_front(*p3People);
 
     for (list<People>::iterator i = data.begin(); i != data.end(); i++) {
-        std::cout << "result = " << "name = " << (*i).getName() + "age = " << i->getAge() << std::endl;
+        std::cout << "result = " << "age = " << (*i).getName() + "age = " << i->getAge() << std::endl;
     }
 }
 
@@ -76,7 +76,7 @@ void People::getPeopleMapInfo() {
 }
 
 string People::toString() {
-    std::cout << "age = " << age << " name = " << name << std::endl;
+    std::cout << "age = " << age << " age = " << name << std::endl;
     return std::string();
 }
 
