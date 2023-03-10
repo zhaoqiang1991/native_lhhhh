@@ -58,19 +58,19 @@ void People::getPeopleInfo() {
 
 void People::getPeopleMapInfo() {
     map<int, People> mp;
-    People *p1People = new People(1, "张三");
-    People *p2People = new People(1, "张三");
-    People *p3People = new People(1, "李四");
-    People *p4People = new People(1, "王五");
+    auto *p1People = new People(1, "张三");
+    auto *p2People = new People(1, "张三");
+    auto *p3People = new People(1, "李四");
+    auto *p4People = new People(1, "王五");
     mp.insert(pair<int, People>(01, *p1People));
     mp.insert(pair<int, People>(02, *p2People));
     mp.insert(pair<int, People>(03, *p3People));
     mp.insert(pair<int, People>(04, *p4People));
 
 
-    for (auto it = mp.begin(); it != mp.end(); it++) {
-        std::cout << "====== getPeopleMapInfo result = ""it->first = " << it->first << " = 名字 = "
-                  << ((*it).second).toString()
+    for (auto &it : mp) {
+        std::cout << "====== getPeopleMapInfo result = ""it->first = " << it.first << " = 名字 = "
+                  << (it.second).toString()
                   << std::endl;
     }
 }
@@ -83,9 +83,9 @@ string People::toString() {
 void People::getPeopleSetInfo() {
     set<People> st;
     People *p1People = new People(1, "张三1");
-    People *p2People = new People(10, "张三2");
-    People *p3People = new People(19, "李四");
-    People *p4People = new People(17, "王五");
+    auto p2People = new People(10, "张三2");
+    auto p3People = new People(19, "李四");
+    auto p4People = new People(17, "王五");
 
     st.insert(*p1People);
 
@@ -93,8 +93,8 @@ void People::getPeopleSetInfo() {
     st.insert(*p3People);
     st.insert(*p4People);
 
-    for (auto it = st.begin(); it != st.end(); it++) {
-        std::cout << "====== getPeopleSetInfo result = ""it->first = " << (*it).getName() << std::endl;
+    for (const auto &it : st) {
+        std::cout << "====== getPeopleSetInfo result = ""it->first = " << it.getName() << std::endl;
     }
 }
 
