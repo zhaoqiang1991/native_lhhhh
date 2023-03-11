@@ -18,14 +18,18 @@ void test_method5();
 
 void test_method6();
 
+void test_method7();
+
 mbs *sc = NULL;
+ap *p = NULL;
 
 int main() {
     //test_method1();
     //test_method2();
     //test_method4();
     //test_method5();
-    test_method6();
+    //test_method6();
+    test_method7();
     return 0;
 }
 
@@ -74,5 +78,17 @@ void test_method6() {
     int a1 = 3, a2 = 4, *p = 0;
     p = mult(&a1, &a2);
     printf("===%d\n", *p);
+}
+
+/**
+ * union练习,union同一个时间只能有一个使用，更节省内存
+ */
+void test_method7() {
+    p = malloc(sizeof(p));
+    p->name = 'r';
+    p->weight = 3;
+
+    printf("%c\n",p->name);
+    printf("%d\n",p->weight);
 }
 

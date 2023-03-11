@@ -34,7 +34,10 @@ int (*getInfo)(int *it, int *num);
 
 int * mult(int *it, int *num);
 
-/*
-typedef int (*fun)(int, int);
-*/
+typedef union Apple{
+    int weight;
+    char name;
+}ap;
+
+extern ap *p;
 
