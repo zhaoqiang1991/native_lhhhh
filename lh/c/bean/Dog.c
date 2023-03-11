@@ -22,5 +22,9 @@ void eat(int *it) {
     printf("%d\n%s\n", *it, "===== 调用eat 方法");
 }
 
+extern int get_info(int *it, int *num) {
+    return *it + *num;
+}
+
 
 

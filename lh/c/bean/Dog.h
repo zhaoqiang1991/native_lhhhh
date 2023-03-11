@@ -21,3 +21,7 @@ bool max(int *it, int *num);
 
 int sum(int *it);
 
+/*
+typedef int (*fun)(int, int);
+*/
+
