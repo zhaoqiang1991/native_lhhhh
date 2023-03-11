@@ -19,7 +19,11 @@ extern void eat(int *it);
 
 bool max(int *it, int *num);
 
+int min(int *it, int *num);
+
 int sum(int *it);
+
+int (*getInfo)(int *it, int *num);
 
 /*
 typedef int (*fun)(int, int);

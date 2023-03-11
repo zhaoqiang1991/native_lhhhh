@@ -14,12 +14,15 @@ void *test_method3(int *it, int *num);
 
 void test_method4();
 
+void test_method5();
+
 mbs *sc = NULL;
 
 int main() {
     //test_method1();
     //test_method2();
-    test_method4();
+    //test_method4();
+    test_method5();
     return 0;
 }
 
@@ -54,5 +57,13 @@ void test_method4() {
     int *p, a1 = 2, a2 = 3;
     p = test_method3(&a1, &a2);
     printf("%d\n", *p);
+}
+
+//函数指针的使用
+void test_method5() {
+    int a1 = 2, a2 = 4;
+    getInfo = min;
+    int i = getInfo(&a1, &a2);
+    printf("%d\n", i);
 }
 
