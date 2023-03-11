@@ -28,6 +28,17 @@ int min(int *it, int *num) {
     }
     return *num;
 }
+/**
+ * 指针函数
+ * @param it
+ * @param num
+ * @return
+ */
+int *mult(int *it, int *num) {
+    int result = 0;
+    result = (*it * (*num));
+    return &result;
+}
 
 extern int get_info(int *it, int *num) {
     return *it + *num;
