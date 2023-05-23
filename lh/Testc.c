@@ -28,6 +28,8 @@ void test_method10();
 
 void test_method11();
 
+void test_method12();
+
 int add(const int *a, const int *b);
 
 int stb(int a, int b);
@@ -49,6 +51,10 @@ int *multy(const int *a, const int *b);
 mbs *sc = NULL;
 ap *p = NULL;
 
+int divResult(int a, int b) {
+    return a / b;
+}
+
 int main() {
     //test_method1();
     //test_method2();
@@ -59,7 +65,8 @@ int main() {
     //test_method8();
     //test_method9();
     //test_method10();
-    test_method11();
+    //test_method11();
+    test_method12();
     return 0;
 }
 
@@ -198,7 +205,17 @@ void test_method11() {
 
 }
 
+void test_method12() {
+    int a = 10, b = 5;
+
+    printf("a / b的值 = %d\n", caculateResultOther(divResult, a, b));
+}
+
 int caculateResult(int (*operation)(int, int), int c, int d) {
+    return operation(c, d);
+}
+
+int caculateResultOther(pFunction operation, int c, int d) {
     return operation(c, d);
 }
 

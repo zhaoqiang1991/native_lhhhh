@@ -50,3 +50,11 @@ typedef struct {
     float salary;
 } Employee;
 
+/**
+ * 指针函数的声明，返回值(指针 函数名)(参数列表 )
+ *
+ * typedef的替换是使用前面的替换后面的和宏定义正好相反
+ */
+typedef int (*pFunction)(int, int);
+
+int divResult(int a, int b);
