@@ -4,7 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "c/bean/Dog.h"
+#include "utils/SafeThread.h"
 
+/*
 void test_method1();
 
 void test_method2();
@@ -28,24 +30,31 @@ void test_method10();
 
 void test_method11();
 
-void test_method12();
+void test_method12();*/
+
+void test_method13();
+/*
 
 int add(const int *a, const int *b);
 
 int stb(int a, int b);
 
 
+*/
 /**
  * 函数指针
  * @return
- */
+ *//*
+
 int (*caculate)(int *, int *);
 
 void (*subtraction)(int *, int *);
 
+*/
 /**
  * 指针函数
- */
+ *//*
+
 int *multy(const int *a, const int *b);
 
 mbs *sc = NULL;
@@ -54,6 +63,7 @@ ap *p = NULL;
 int divResult(int *a, int *b) {
     return *a / *b;
 }
+*/
 
 int main() {
     //test_method1();
@@ -66,9 +76,11 @@ int main() {
     //test_method9();
     //test_method10();
     //test_method11();
-    test_method12();
+    //test_method12();
+    test_method13();
     return 0;
 }
+/*
 
 void test_method1() {
     int a = 2, b = 6;
@@ -118,9 +130,11 @@ void test_method6() {
 }
 
 
+*/
 /**
  * union练习,union同一个时间只能有一个使用，更节省内存
- */
+ *//*
+
 void test_method7() {
     p = malloc(sizeof(p));
     //p->name = 'p';
@@ -130,8 +144,10 @@ void test_method7() {
         printf("内存分配失败!");
         return;
     }
-    /* strcpy(p->address, "刘欢测试C语言字符串！");
-     strcat(p->address, "在地址里面追加一些数据");*/
+    */
+/* strcpy(p->address, "刘欢测试C语言字符串！");
+     strcat(p->address, "在地址里面追加一些数据");*//*
+
     //printf("%c\n",p->name);
     printf("%s\n", p->address);
     printf("%d\n", p->weight);
@@ -169,9 +185,11 @@ void test_method8() {
     printf("%s\n", arr);
 }
 
+*/
 /**
  * 函数指针的简单使用方法
- */
+ *//*
+
 void test_method10() {
     int a = 2, b = 3;
     printf("测试a+b = %d\n", add(&a, &b));
@@ -217,6 +235,28 @@ int caculateResult(int (*operation)(int, int), int c, int d) {
 
 int caculateResultOther(pFunction operation, int *c, int *d) {
     return operation(c, d);
+}
+*/
+
+
+void test_method13() {
+    Queue queue;
+    int capacity = 5;
+
+    initQueue(&queue, capacity);
+
+    enqueue(&queue, 1);
+    enqueue(&queue, 2);
+    enqueue(&queue, 3);
+
+    dequeue(&queue);
+    dequeue(&queue);
+    dequeue(&queue);
+    dequeue(&queue);
+
+    free(queue.buffer);
+    pthread_mutex_destroy(&(queue.lock));
+
 }
 
 
