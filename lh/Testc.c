@@ -20,6 +20,10 @@ void test_method6();
 
 void test_method7();
 
+void test_method8();
+
+void test_method9();
+
 mbs *sc = NULL;
 ap *p = NULL;
 
@@ -30,6 +34,8 @@ int main() {
     //test_method5();
     //test_method6();
     test_method7();
+    //test_method8();
+    test_method9();
     return 0;
 }
 
@@ -80,15 +86,55 @@ void test_method6() {
     printf("===%d\n", *p);
 }
 
+
 /**
  * union练习,union同一个时间只能有一个使用，更节省内存
  */
 void test_method7() {
     p = malloc(sizeof(p));
-    p->name = 'r';
+    //p->name = 'p';
     p->weight = 3;
+    //p->address = (char*) malloc(sizeof(char) * 200);
+    if (p == NULL) {
+        printf("内存分配失败!");
+        return;
+    }
+   /* strcpy(p->address, "刘欢测试C语言字符串！");
+    strcat(p->address, "在地址里面追加一些数据");*/
+    //printf("%c\n",p->name);
+    printf("%s\n",p->address);
+    printf("%d\n", p->weight);
+    printf("%s\n", "=========================\n");
+    free(p);
 
-    printf("%c\n",p->name);
-    printf("%d\n",p->weight);
+}
+
+void test_method9() {
+    Employee *emp = (Employee *) malloc(sizeof(Employee));
+
+    if (emp == NULL) {
+        printf("内存分配失败\n");
+        return;
+    }
+
+    emp->id = 1;
+    strcpy(emp->name, "John Doe");
+    strcat(emp->name, "追加数据");
+    emp->salary = 5000.0;
+
+    printf("员工ID: %d\n", emp->id);
+    printf("员工姓名: %s\n", emp->name);
+    printf("员工薪水: %.2f\n", emp->salary);
+
+    free(emp);
+}
+
+void test_method8() {
+    char arr[30] = "hello world";//初始化字符串
+    char arr1 = 'h';//初始化字符串
+    char *p;//定义一个指针p
+    p = arr;//字符串的地址赋给p
+    arr[1] = 'p';
+    printf("%s\n", arr);
 }
 

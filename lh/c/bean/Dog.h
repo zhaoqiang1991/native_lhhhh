@@ -4,6 +4,7 @@
 
 #include <stdbool.h>
 #include <stdio.h>
+#include <string.h>
 
 #ifndef LH_DOG_H
 #define LH_DOG_H
@@ -32,12 +33,20 @@ int sum(int *it);
  */
 int (*getInfo)(int *it, int *num);
 
-int * mult(int *it, int *num);
+int *mult(int *it, int *num);
 
-typedef union Apple{
+typedef union Apple {
     int weight;
     char name;
-}ap;
+    char address[sizeof(char) * 50];
+} ap;
 
 extern ap *p;
+
+
+typedef struct {
+    int id;
+    char name[50];
+    float salary;
+} Employee;
 
