@@ -246,10 +246,9 @@ void test_method13() {
     enqueue(&queue, 2);
     enqueue(&queue, 3);
 
-    dequeue(&queue);
-    dequeue(&queue);
-    dequeue(&queue);
-    dequeue(&queue);
+    for (int i = 0; i < queue.capacity; ++i) {
+        dequeue(&(queue));
+    }
 
     free(queue.buffer);
     pthread_mutex_destroy(&(queue.lock));
