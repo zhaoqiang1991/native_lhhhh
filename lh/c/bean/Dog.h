@@ -55,6 +55,6 @@ typedef struct {
  *
  * typedef的替换是使用前面的替换后面的和宏定义正好相反
  */
-typedef int (*pFunction)(int, int);
+typedef int (*pFunction)(int*, int*);
 
-int divResult(int a, int b);
+int divResult(int *a, int *b);

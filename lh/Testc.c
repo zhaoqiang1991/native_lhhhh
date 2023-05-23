@@ -51,8 +51,8 @@ int *multy(const int *a, const int *b);
 mbs *sc = NULL;
 ap *p = NULL;
 
-int divResult(int a, int b) {
-    return a / b;
+int divResult(int *a, int *b) {
+    return *a / *b;
 }
 
 int main() {
@@ -208,14 +208,14 @@ void test_method11() {
 void test_method12() {
     int a = 10, b = 5;
 
-    printf("a / b的值 = %d\n", caculateResultOther(divResult, a, b));
+    printf("a / b的值 = %d\n", caculateResultOther(divResult, &a, &b));
 }
 
 int caculateResult(int (*operation)(int, int), int c, int d) {
     return operation(c, d);
 }
 
-int caculateResultOther(pFunction operation, int c, int d) {
+int caculateResultOther(pFunction operation, int *c, int *d) {
     return operation(c, d);
 }
 
