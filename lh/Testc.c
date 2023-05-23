@@ -26,13 +26,20 @@ void test_method9();
 
 void test_method10();
 
+void test_method11();
+
 int add(const int *a, const int *b);
+
+int stb(int a, int b);
+
 
 /**
  * 函数指针
  * @return
  */
 int (*caculate)(int *, int *);
+
+void (*subtraction)(int *, int *);
 
 /**
  * 指针函数
@@ -51,7 +58,8 @@ int main() {
     //test_method7();
     //test_method8();
     //test_method9();
-    test_method10();
+    //test_method10();
+    test_method11();
     return 0;
 }
 
@@ -167,7 +175,7 @@ void test_method10() {
     printf("测试函数指针c+d = %d\n", caculate(&c, &d));
     printf("==========================\n");
     int result = (int) multy(&c, &d);
-    printf("测试指针函数c*d = %d\n",result);
+    printf("测试指针函数c*d = %d\n", result);
 
 }
 
@@ -177,6 +185,21 @@ int add(const int *a, const int *b) {
 
 int *multy(const int *a, const int *b) {
     return (*a) * (*b);
+}
+
+int stb(int a, int b) {
+    return a - b;
+}
+
+void test_method11() {
+    int a = 9, b = 5;
+
+    printf("a - b的值 = %d\n", caculateResult(stb, a, b));
+
+}
+
+int caculateResult(int (*operation)(int, int), int c, int d) {
+    return operation(c, d);
 }
 
 
