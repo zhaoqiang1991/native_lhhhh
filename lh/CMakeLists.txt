@@ -14,4 +14,6 @@ add_executable(native Testc.c
         c/bean/Dog.c
         c/bean/Dog.h
         utils/SafeThread.c
-        utils/SafeThread.h)
+        utils/SafeThread.h
+        utils/MySafeThread.c
+        utils/MySafeThread.h)

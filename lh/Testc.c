@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "c/bean/Dog.h"
 #include "utils/SafeThread.h"
+#include "utils/MySafeThread.h"
 
 
 void test_method1();
@@ -34,6 +35,7 @@ void test_method12();
 
 void test_method13();
 
+void test_method14();
 
 int add(const int *a, const int *b);
 
@@ -76,7 +78,8 @@ int main() {
     //test_method10();
     //test_method11();
     //test_method12();
-    test_method13();
+    //test_method13();
+    test_method14();
     return 0;
 }
 
@@ -252,6 +255,24 @@ void test_method13() {
 
     free(queue.buffer);
     pthread_mutex_destroy(&(queue.lock));
+
+}
+
+void test_method14() {
+    my_safe_thread mySafeThread;
+    int capacity = 5;
+    initMySafeQueue(&mySafeThread, capacity);
+    for (int i = 0; i < capacity; i++) {
+        enqueueMySafeQueue(&mySafeThread, i);
+    }
+    printf("======================================================\n\n");
+
+    for (int i = 0; i < capacity; i++) {
+        dequeueMySafeQueue(&mySafeThread);
+    }
+    printf("mySafeThread.size= %d\n\n",mySafeThread.size);
+    free(mySafeThread.buffer);
+    pthread_mutex_destroy(&mySafeThread.lock);
 
 }
 
