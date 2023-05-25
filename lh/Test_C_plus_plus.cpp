@@ -19,21 +19,6 @@ typedef void (*FP)(char *s);
 
 void Invoke(char *s);
 
-class ProgramA {
-public:
-    void FunA1() { printf("I'am ProgramA.FunA1() and be called..\n"); }
-
-    void FunA2() { printf("I'am ProgramA.FunA2() and be called..\n"); }
-};
-
-class ProgramB {
-public:
-    void FunB1(void (ProgramA::*callback)(), void *context) {
-        printf("I'am ProgramB.FunB1() and be called..\n");
-        ((ProgramA *) context->*callback)();
-    }
-};
-
 
 using namespace std;
 
@@ -60,16 +45,18 @@ void test_method1() {
     system("read");
 }
 
-void aaa(int *i) {
+void getData(int *i) {
     cout << "C++函数调用测试 i = " << *i << endl;
 }
 
 
 void test_method2() {
-    MySafeQueue mySafeQueue;
+    //堆栈申请的内存需要手动释放,不然会内存泄露
+    MySafeQueue *mySafeQueue = new MySafeQueue();
     int i = 10000;
-    mySafeQueue.setCallback(aaa);
-    mySafeQueue.sync(&i);
+    mySafeQueue->setCallback(getData);
+    mySafeQueue->sync(&i);
+    delete mySafeQueue;
 }
 
 void test_method3() {
@@ -80,12 +67,4 @@ void test_method3() {
 
 void Invoke(char *s) {
     cout << "C++函数调用测试 s = " << s << endl;
-}
-
-void test_method4() {
-    ProgramA PA;
-    PA.FunA1();
-
-    ProgramB PB;
-    PB.FunB1(&ProgramA::FunA2, &PA);
 }
