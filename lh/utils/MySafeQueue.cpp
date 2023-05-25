@@ -4,11 +4,3 @@
 
 #include "MySafeQueue.h"
 
-
-void MySafeQueue::setCallback(Callback callback) {
-    this->callback = callback;
-}
-
-void MySafeQueue::sync(int *i) {
-    callback(i);
-}
