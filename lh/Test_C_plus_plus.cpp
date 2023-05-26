@@ -37,10 +37,10 @@ int main() {
     cout << "=============测试C++的客户端程序=============" << endl;
 
     //test_method1();
-    test_method2();
+    //test_method2();
     //test_method3();
     // test_method4();
-    // test_method5();
+     test_method5();
     return 0;
 }
 
