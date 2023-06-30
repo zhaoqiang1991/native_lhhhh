@@ -7,6 +7,8 @@
 #include "utils/SafeThread.h"
 #include "utils/MySafeThread.h"
 
+#include <string.h>
+
 
 void test_method1();
 
@@ -37,6 +39,11 @@ void test_method13();
 
 void test_method14();
 
+
+void function_no_change_string_point(char *p);
+
+void function_change_string_point(char **p);
+
 int add(const int *a, const int *b);
 
 int stb(int a, int b);
@@ -57,6 +64,8 @@ void (*subtraction)(int *, int *);
  */
 
 int *multy(const int *a, const int *b);
+
+void test_method16();
 
 mbs *sc = NULL;
 ap *p = NULL;
@@ -79,10 +88,12 @@ int main() {
     //test_method11();
     //test_method12();
     //test_method13();
-    test_method14();
+    //test_method14();
+    test_method16();
+
+
     return 0;
 }
-
 
 void test_method1() {
     int a = 2, b = 6;
@@ -270,11 +281,42 @@ void test_method14() {
     for (int i = 0; i < capacity; i++) {
         dequeueMySafeQueue(&mySafeThread);
     }
-    printf("mySafeThread.size= %d\n\n",mySafeThread.size);
+    printf("mySafeThread.size= %d\n\n", mySafeThread.size);
     free(mySafeThread.buffer);
     pthread_mutex_destroy(&mySafeThread.lock);
 
 }
 
 
+void test_method16() {/**
+ * 1.使用c语言的指针地址修改的特点，我们可以在一个函数中直接修改这个变量的地址，并为其初始化内容（有点像构造函数）
 
+2.修改内存地址的指向需要比原来更高一级的指针传递到函数中，然后在函数中修改即可
+
+3.使用这个方式就可以修改数组的内存地址了
+
+ */
+    //char *p = malloc(sizeof(char) * 10);
+    char  *p = NULL;
+    //p = "123456"; // 将p指向123456
+    printf("p==>%s\n", p);
+    // 无法改变一个指针
+    function_no_change_string_point(p);
+    printf("p==>%s\n", p);
+    // 改变一个指针直接传递比原来指针多一级的指针即可
+    function_change_string_point(&p);
+    printf("p==>%s\n", p);
+}
+
+void test_method15(int *p) {
+    *p = 20;
+}
+
+void function_change_string_point(char **p) {
+    *p = "666666";
+}
+
+
+void function_no_change_string_point(char *p) {
+    p = "888888";
+}
