@@ -316,6 +316,8 @@ void test_method16() {/**
 void test_method17() {
     /**
      * 传递地址可以修改指针的值这个和test_method16里面的测试要区别开来，不要混淆了
+     * c/c++里面在方法里面传递&p和Java里面的方法传递对象的效果一样 ，理解了这一点，
+     * 那么就把知识串联起来，融汇贯通了
      */
     //char *p = malloc(sizeof(char) * 10);
     char  *p = NULL;
