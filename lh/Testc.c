@@ -296,9 +296,9 @@ void test_method16() {/**
 3.使用这个方式就可以修改数组的内存地址了
 
  */
-    //char *p = malloc(sizeof(char) * 10);
-    char  *p = NULL;
-    //p = "123456"; // 将p指向123456
+    char *p = malloc(sizeof(char) * 10);
+    //char  *p = NULL;
+    p = "123456"; // 将p指向123456
     printf("p==>%s\n", p);
     // 无法改变一个指针
     function_no_change_string_point(p);
