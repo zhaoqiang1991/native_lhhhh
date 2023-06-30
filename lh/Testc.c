@@ -42,6 +42,8 @@ void test_method14();
 
 void function_no_change_string_point(char *p);
 
+void function_no_change_string_point2(char *p);
+
 void function_change_string_point(char **p);
 
 int add(const int *a, const int *b);
@@ -67,6 +69,8 @@ int *multy(const int *a, const int *b);
 
 void test_method16();
 
+void test_method17();
+
 mbs *sc = NULL;
 ap *p = NULL;
 
@@ -89,8 +93,8 @@ int main() {
     //test_method12();
     //test_method13();
     //test_method14();
-    test_method16();
-
+    //test_method16();
+    test_method17();
 
     return 0;
 }
@@ -296,12 +300,29 @@ void test_method16() {/**
 3.使用这个方式就可以修改数组的内存地址了
 
  */
-    char *p = malloc(sizeof(char) * 10);
-    //char  *p = NULL;
+    //char *p = malloc(sizeof(char) * 10);
+    char  *p = NULL;
     p = "123456"; // 将p指向123456
     printf("p==>%s\n", p);
     // 无法改变一个指针
-    function_no_change_string_point(p);
+    function_no_change_string_point(&p);
+    printf("p==>%s\n", p);
+    // 改变一个指针直接传递比原来指针多一级的指针即可
+    function_change_string_point(&p);
+    printf("p==>%s\n", p);
+}
+
+
+void test_method17() {
+    /**
+     * 传递地址可以修改指针的值这个和test_method16里面的测试要区别开来，不要混淆了
+     */
+    //char *p = malloc(sizeof(char) * 10);
+    char  *p = NULL;
+    p = "123456"; // 将p指向123456
+    printf("p==>%s\n", p);
+    // 无法改变一个指针
+    function_no_change_string_point2(&p);
     printf("p==>%s\n", p);
     // 改变一个指针直接传递比原来指针多一级的指针即可
     function_change_string_point(&p);
@@ -319,4 +340,8 @@ void function_change_string_point(char **p) {
 
 void function_no_change_string_point(char *p) {
     p = "888888";
+}
+
+void function_no_change_string_point2(char *p) {
+    *p = "888888";
 }
