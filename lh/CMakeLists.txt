@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 project(lh)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 14)
 
 #在同一个CMakeList管理的项目中，不能有两个main方法的文件，否则会变异报错，如果想有多个main方法
 #可以放在不同的module使用CMakeList管理起来
