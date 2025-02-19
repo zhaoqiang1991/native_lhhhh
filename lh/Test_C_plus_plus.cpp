@@ -28,6 +28,8 @@ void Invoke(char *s);
 
 Node *test_method6(Node *head);
 
+bool test_method7(Node *head);
+
 using namespace std;
 
 void *test(void *args) {
@@ -45,19 +47,52 @@ int main() {
     // test_method4();
     //test_method5();
 
-    Node *head5 = new Node(5, nullptr);
+    /* Node *head5 = new Node(5, nullptr);
+     Node *head4 = new Node(4, head5);
+     Node *head3 = new Node(3, head4);
+     Node *head2 = new Node(2, head3);
+     Node *head1 = new Node(1, head2);
+     Node *head0 = new Node(0, head1);
+     Node *revertNode = test_method6(head0);
+     while (revertNode != nullptr) {
+         cout << "当前值" << revertNode->val << "-->";
+         revertNode = revertNode->next;
+     }
+     cout << "打印完毕" << endl;*/
+
+
+
+
+
+
+    Node *head5 = new Node();
     Node *head4 = new Node(4, head5);
     Node *head3 = new Node(3, head4);
     Node *head2 = new Node(2, head3);
     Node *head1 = new Node(1, head2);
     Node *head0 = new Node(0, head1);
-    Node *revertNode = test_method6(head0);
-    while (revertNode != nullptr) {
-        cout << "当前值" << revertNode->val << "-->";
-        revertNode = revertNode->next;
-    }
-    cout << "打印完毕" << endl;
+    head5->next = head0;
+    bool hasCircle = test_method7(head0);
+
+    cout << "是否有环" << (hasCircle == 1) << "<----";
     return 0;
+}
+
+/**
+ * 判断一个链表是否又环
+ */
+bool test_method7(Node *head) {
+    Node *slow = head;
+    Node *fast = head;
+    while (fast != nullptr && fast->next != nullptr) {
+        fast = fast->next->next;
+        slow = slow->next;
+        if (fast == slow) {
+            return true;
+        }
+    }
+    return false;
+
 }
 
 Node *test_method6(Node *head) {

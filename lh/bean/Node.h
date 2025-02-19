@@ -13,7 +13,7 @@ public:
     Node *next;
     int val;
 
-
+    Node();
 };
 
 

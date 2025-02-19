@@ -5,3 +5,5 @@
 #include "Node.h"
 
 Node::Node(int val, Node *next) : val(val), next(next) {}
+
+Node::Node() {}
