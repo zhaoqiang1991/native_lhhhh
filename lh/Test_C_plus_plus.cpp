@@ -4,6 +4,7 @@
 #include <iostream>
 #include "utils/MySafeQueue.h"
 #include "utils/ThreadSafeQueue.h"
+#include "bean/Node.h"
 
 using namespace std;
 
@@ -25,6 +26,8 @@ typedef void (*FP)(char *s);
 void Invoke(char *s);
 
 
+Node *test_method6(Node *head);
+
 using namespace std;
 
 void *test(void *args) {
@@ -40,8 +43,40 @@ int main() {
     //test_method2();
     //test_method3();
     // test_method4();
-     test_method5();
+    //test_method5();
+
+    Node *head5 = new Node(5, nullptr);
+    Node *head4 = new Node(4, head5);
+    Node *head3 = new Node(3, head4);
+    Node *head2 = new Node(2, head3);
+    Node *head1 = new Node(1, head2);
+    Node *head0 = new Node(0, head1);
+    Node *revertNode = test_method6(head0);
+    while (revertNode != nullptr) {
+        cout << "当前值" << revertNode->val << "-->";
+        revertNode = revertNode->next;
+    }
+    cout << "打印完毕" << endl;
     return 0;
+}
+
+Node *test_method6(Node *head) {
+    //单链表反转
+    Node *next = nullptr;
+    Node *pre = nullptr;
+    Node *cur = head;
+
+    if (cur == nullptr || cur->next == nullptr) {
+        return cur;
+    }
+    while (cur != nullptr) {
+        next = cur->next;
+        cur->next = pre;
+        pre = cur;
+        cur = next;
+    }
+    return pre;
+
 }
 
 void test_method1() {
