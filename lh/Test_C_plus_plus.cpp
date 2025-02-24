@@ -7,6 +7,17 @@
 #include "utils/MySafeQueue.h"
 #include "utils/ThreadSafeQueue.h"
 #include "bean/Node.h"
+#include <iostream>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/mman.h>
+#include <sys/wait.h>
+#include <fcntl.h>
+#include <cstring>
+#include <cerrno>
+
+#define SHARED_MEMORY_SIZE 4096  // 共享内存大小，4KB
+
 
 using namespace std;
 
@@ -39,6 +50,8 @@ int test_method9();
 void test_method10();
 
 void test_method11();
+
+void test_method12();
 
 using namespace std;
 
@@ -90,8 +103,42 @@ int main() {
 
     /* test_method9();*/
     //test_method10();
-    test_method11();
+    //test_method11();
+    test_method12();
     return 0;
+}
+
+/**
+ * 匿名内存共享
+ */
+void test_method12() {
+// 创建匿名共享内存
+    void *shared_memory = mmap(NULL, SHARED_MEMORY_SIZE, PROT_READ | PROT_WRITE,
+                               MAP_ANONYMOUS | MAP_SHARED, -1, 0);
+
+    if (shared_memory == MAP_FAILED) {
+        std::cerr << "mmap failed!" << std::endl;
+        return;
+    }
+
+    pid_t pid = fork();  // 创建子进程
+
+    if (pid == 0) {  // 子进程
+        // 子进程修改共享内存中的数据
+        char *data = (char *) shared_memory;
+        std::strcpy(data, "Hello from child process!，测试代码");
+        std::cout << "Child process updated shared memory." << std::endl;
+        exit(0);
+    } else {  // 父进程
+        wait(NULL);  // 等待子进程结束
+
+        // 父进程读取共享内存中的数据
+        char *data = (char *) shared_memory;
+        std::cout << "Parent process reads: " << data << std::endl;
+
+        // 清理共享内存
+        munmap(shared_memory, SHARED_MEMORY_SIZE);
+    }
 }
 
 void test_method11() {
