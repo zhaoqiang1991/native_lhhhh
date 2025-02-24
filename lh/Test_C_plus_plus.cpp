@@ -3,6 +3,7 @@
 //
 #include <iostream>
 #include <zconf.h>
+#include <semaphore.h>
 #include "utils/MySafeQueue.h"
 #include "utils/ThreadSafeQueue.h"
 #include "bean/Node.h"
@@ -34,6 +35,10 @@ bool test_method7(Node *head);
 Node *test_method8(Node *pNode, Node *pNode1);
 
 int test_method9();
+
+void test_method10();
+
+void test_method11();
 
 using namespace std;
 
@@ -83,8 +88,76 @@ int main() {
 
     //test_method8(nullptr, nullptr);
 
-    test_method9();
+    /* test_method9();*/
+    //test_method10();
+    test_method11();
     return 0;
+}
+
+void test_method11() {
+    int pipefd[2];
+    pid_t pid;
+    const char *message = "Hello from parent!";
+
+    // 创建管道
+    if (pipe(pipefd) == -1) {
+        std::perror("pipe");
+        exit(1);
+    }
+
+    pid = fork();
+
+    if (pid == 0) {  // 子进程（Consumer）
+        close(pipefd[1]);  // 关闭写端
+        char buffer[100];
+        read(pipefd[0], buffer, sizeof(buffer));
+        std::cout << "子进程可以写入数据..." << std::endl;
+        std::cout << "Child received: " << buffer << std::endl;
+        close(pipefd[0]);
+        sleep(20);
+        exit(0);
+    } else {  // 父进程（Producer）
+        close(pipefd[0]);  // 关闭读端
+        std::cout << "父进程可以写入数据..." << std::endl;
+        sleep(4);
+        write(pipefd[1], message, strlen(message) + 1);  // 向管道写入数据
+        close(pipefd[1]);
+        wait(NULL);  // 等待子进程结束
+    }
+}
+
+sem_t sem;  // 声明信号量
+void *producer(void *arg) {
+    std::cout << "Producer is running..." << std::endl;
+    sleep(20);  // 模拟处理过程，20ms
+    sem_post(&sem);  // 生产完成，发出信号
+    std::cout << "Producer finished." << std::endl;
+    return NULL;
+}
+
+void test_method10() {
+    pid_t pid;
+    pthread_t thread;
+
+    // 初始化信号量
+    sem_init(&sem, 1, 0);  // 信号量初始化为 0
+
+    pid = fork();
+
+    if (pid == 0) {  // 子进程（Consumer）
+        std::cout << "Consumer is waiting for signal..." << std::endl;
+        sem_wait(&sem);  // 等待信号
+        std::cout << "Consumer is consuming..." << std::endl;
+        std::cout << "Consumer finished." << std::endl;
+        exit(0);
+    } else {  // 父进程（Producer）
+        pthread_create(&thread, NULL, producer, NULL);
+        pthread_join(thread, NULL);
+        wait(NULL);  // 等待子进程结束
+    }
+
+    // 清理资源
+    sem_destroy(&sem);
 }
 
 /**
