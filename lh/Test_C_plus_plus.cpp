@@ -2,6 +2,7 @@
 // Created by lh on 2023-05-24.
 //
 #include <iostream>
+#include <zconf.h>
 #include "utils/MySafeQueue.h"
 #include "utils/ThreadSafeQueue.h"
 #include "bean/Node.h"
@@ -29,6 +30,10 @@ void Invoke(char *s);
 Node *test_method6(Node *head);
 
 bool test_method7(Node *head);
+
+Node *test_method8(Node *pNode, Node *pNode1);
+
+int test_method9();
 
 using namespace std;
 
@@ -65,7 +70,7 @@ int main() {
 
 
 
-    Node *head5 = new Node();
+/*    Node *head5 = new Node();
     Node *head4 = new Node(4, head5);
     Node *head3 = new Node(3, head4);
     Node *head2 = new Node(2, head3);
@@ -74,8 +79,54 @@ int main() {
     head5->next = head0;
     bool hasCircle = test_method7(head0);
 
-    cout << "是否有环" << (hasCircle == 1) << "<----";
+    cout << "是否有环" << (hasCircle == 1) << "<----";*/
+
+    //test_method8(nullptr, nullptr);
+
+    test_method9();
     return 0;
+}
+
+/**
+ * linux fork机制
+ */
+int test_method9() {
+    int pid = fork();
+
+    if (pid == -1)
+        return -1;
+
+    if (pid) {
+        printf("我是父进程 我的pid = %d\n", getpid());
+        printf("我是父进程 当前fork的pid = %d\n", pid);
+        printf("=====================================\n");
+        printf("=====================================\n");
+        return 0;
+    } else {
+        printf("我是子进程 我的pid = %d\n", getpid());
+        printf("我是子进程 当前fork的pid = %d\n", pid);
+        return 0;
+    }
+}
+
+/**
+ * 判断两个链表是否相交
+ * @param pNode
+ * @param pNode1
+ * @return
+ */
+Node *test_method8(Node *pNode, Node *pNode1) {
+    if (pNode == nullptr || pNode1->next == nullptr || pNode1 == nullptr || pNode1->next == nullptr) {
+        return nullptr;
+    }
+
+    Node *pa = pNode;
+    Node *pb = pNode1;
+    while (pa != pb) {
+        pa = pa == nullptr ? pb : pa->next;
+        pb = pb == nullptr ? pa : pb->next;
+    }
+    return pa;
 }
 
 /**
