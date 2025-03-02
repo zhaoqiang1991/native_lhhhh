@@ -21,4 +21,4 @@ add_executable(native Test_C_plus_plus.cpp
         utils/MySafeThread.h
         utils/MySafeQueue.cpp
         utils/MySafeQueue.h
-        #[[Test_C_plus_plus.cpp]]  bean/Node.cpp bean/Node.h)
+        #[[Test_C_plus_plus.cpp]]  bean/Node.cpp bean/Node.h bean/MyClass.cpp)

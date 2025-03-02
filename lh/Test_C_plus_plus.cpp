@@ -15,6 +15,7 @@
 #include <fcntl.h>
 #include <cstring>
 #include <cerrno>
+#include "bean/MyClass.cpp"
 
 #define SHARED_MEMORY_SIZE 4096  // 共享内存大小，4KB
 
@@ -52,6 +53,8 @@ void test_method10();
 void test_method11();
 
 void test_method12();
+
+void test_method13();
 
 using namespace std;
 
@@ -104,8 +107,23 @@ int main() {
     /* test_method9();*/
     //test_method10();
     //test_method11();
-    test_method12();
+   /* test_method12();*/
+
+    test_method13();
     return 0;
+}
+
+void test_method13() {
+    std::cout << "Creating SmartPointer..." << std::endl;
+    SmartPointer smartPtr(new MyClass());
+    std::shared_ptr<MyClass> ptr1 = smartPtr.get(); // onFirstRef() 触发
+
+    {
+        std::cout << "Creating another shared_ptr..." << std::endl;
+        std::shared_ptr<MyClass> ptr2 = ptr1; // 共享引用，不触发 onFirstRef()
+    } // ptr2 作用域结束
+
+    std::cout << "Exiting main, last reference gone..." << std::endl;
 }
 
 /**
